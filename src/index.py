@@ -51,7 +51,7 @@ async def cdm_device():
         raw_pssh = "AAAAUnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADIIARIQtwYw94Vz4wxSkOmn2jKo9BoMaW5rYWVudHdvcmtzIgozMTc0MTAxNjg4KgJIRA=="
         pssh = PSSH(raw_pssh)
         challenge = cdm.get_license_challenge(session_id, pssh)
-        return {"message": bytes.fromhex(challenge)}
+        return {"message": challenge}
     except Exception as e:
         return {"message": str(e)}
 
