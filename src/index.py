@@ -7,6 +7,16 @@ from src.dtos.ISayHelloDto import ISayHelloDto
 
 app = FastAPI()
 
+client_id_file = "client_id.bin"
+private_key_file = "private_key.pem"
+
+# 从文件中读取内容
+with open(client_id_file, "rb") as f:
+    client_id = f.read()
+
+with open(private_key_file, "r") as f:
+    private_key = f.read()
+
 
 @app.get("/")
 async def root():
@@ -30,8 +40,8 @@ async def cdm_device():
             type_=Device.Types.ANDROID,
             security_level=3,
             flags={},
-            client_id='123',
-            private_key='456',
+            client_id=client_id,
+            private_key=private_key,
         )
     except Exception as e:
         return {"message": str(e)}
