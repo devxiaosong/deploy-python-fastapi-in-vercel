@@ -25,11 +25,15 @@ async def hello_message(dto: ISayHelloDto):
 
 @app.get("/cdm/device")
 async def cdm_device():
-    Device(
-        type_=Device.Types.ANDROID,
-        security_level=3,
-        flags={},
-        client_id='123',
-        private_key='456',
-    )
+    try:
+        device = Device(
+            type_=Device.Types.ANDROID,
+            security_level=3,
+            flags={},
+            client_id='123',
+            private_key='456',
+        )
+    except Exception as e:
+        return {"message": str(e)}
+
     return {"message": "Device"}
