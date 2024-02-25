@@ -52,8 +52,8 @@ async def cdm_device():
         pssh = PSSH(raw_pssh)
         challenge_bytes = cdm.get_license_challenge(session_id, pssh)
         # 将字节序列解码为字符串
-        challenge_str = challenge_bytes.decode('utf-8')
-        return {"message": challenge_str}
+        hex_str = challenge_bytes.hex()
+        return {"message": hex_str}
     except Exception as e:
         return {"message": str(e)}
 
